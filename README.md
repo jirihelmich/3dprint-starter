@@ -1,7 +1,11 @@
-# 3D Print Starter — Claude Code + OpenSCAD + Bambu Lab X1C
+# 3D Print Starter — Claude Code + OpenSCAD + Bambu Lab
 
 A starter project for generating parametric 3D-printable models with Claude Code,
-authoring them in OpenSCAD, and printing on a Bambu Lab X1 Carbon.
+authoring them in OpenSCAD, and printing on a Bambu Lab printer.
+
+Tested on the **X1 Carbon** and **P1S** (both enclosed, AMS-capable). Should
+work on any Bambu printer that Bambu Studio supports — pick your machine in the
+slicer when you import the `.3mf`.
 
 This repo is structured so that Claude Code (running in your terminal or VS Code)
 already knows how to add new models, build them, and follow project conventions —
@@ -170,7 +174,7 @@ running `make` exports it to `build/foo/foo.stl` and `build/foo/foo.3mf`.
 
 ---
 
-## Print settings (Bambu Lab X1C — sensible defaults)
+## Print settings (X1C / P1S — sensible defaults)
 
 | Use case | Layer | Infill | Walls | Filament |
 |---|---|---|---|---|

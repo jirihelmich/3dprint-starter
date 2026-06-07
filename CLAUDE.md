@@ -1,6 +1,7 @@
 # 3D Print Design Project
 
-Parametric 3D models designed in OpenSCAD, targeting a Bambu Lab X1 Carbon (0.4 mm nozzle).
+Parametric 3D models designed in OpenSCAD, targeting a Bambu Lab printer (X1 Carbon
+or P1S, 0.4 mm nozzle).
 
 ## Structure
 
@@ -47,7 +48,7 @@ When deciding model geometry, consider how it will be printed:
 
 - **Overhangs steeper than 45° from vertical need supports.** Try to design so
   large flat faces sit on the build plate.
-- **Internal bridges up to ~5 mm** print fine on the X1C without support.
+- **Internal bridges up to ~5 mm** print fine on the X1C/P1S without support.
 - **Holes printed vertically** come out round. Holes printed horizontally come out
   slightly egg-shaped — compensate by making them 0.2–0.3 mm oversize on the
   vertical axis.
@@ -57,7 +58,7 @@ When deciding model geometry, consider how it will be printed:
 If a part needs supports, mention it in a comment in the .scad file so the user
 knows when slicing.
 
-## Multi-material / support tricks (X1C with AMS)
+## Multi-material / support tricks (X1C or P1S with AMS)
 
 For ABS prints needing supports, the cleanest release comes from using **PLA as
 the support interface filament**. ABS for the part body, ABS for the support
@@ -65,9 +66,10 @@ body, PLA only for the 2–3 interface layers that touch the part. PLA and ABS
 don't fuse — the support peels off and leaves a smooth surface. Set this in
 Bambu Studio's *Support* tab.
 
-For ABS prints, the X1C chamber should NOT be fully sealed when there's PLA in
-the AMS — crack the front door so the chamber stays around 40–45 °C, otherwise
-PLA softens and clogs.
+For ABS prints with PLA in the AMS, the enclosed chamber should NOT be fully
+sealed — crack the front door so the chamber stays around 40–45 °C, otherwise
+PLA softens and clogs. This applies equally to the X1C and P1S (both are
+passively heated by the bed; neither has an active chamber heater stock).
 
 ## When to use the shared library
 
