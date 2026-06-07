@@ -13,126 +13,23 @@ the rules live in [`CLAUDE.md`](CLAUDE.md) and Claude reads them automatically.
 
 ---
 
-## What you'll install
+## Install — pick your platform
 
-1. **Claude Code** — the AI coding agent (this is the main tool)
-2. **VS Code** — your editor
-3. **OpenSCAD** — the parametric CAD that Claude writes code for
-4. **Bambu Studio** — the slicer for your X1 Carbon
-5. **Node.js** — required by Claude Code
+You'll install five things: Node.js, Claude Code (CLI), VS Code + the Claude
+Code extension, OpenSCAD, and Bambu Studio. Skip whichever you already have.
 
-You can probably skip whatever you already have.
+- 🍎 **[macOS install guide →](docs/install-macos.md)**
+- 🪟 **[Windows install guide →](docs/install-windows.md)**
 
----
-
-## Step 1 — Install Node.js
-
-Claude Code is distributed as an npm package, so you need Node.
-
-**macOS (recommended via Homebrew):**
-
-```sh
-brew install node
-```
-
-Verify:
-
-```sh
-node --version   # should be v18 or newer
-```
-
----
-
-## Step 2 — Install Claude Code (CLI)
-
-```sh
-npm install -g @anthropic-ai/claude-code
-```
-
-First-time login (opens a browser):
-
-```sh
-claude login
-```
-
-Sanity-check it works:
-
-```sh
-cd ~                 # any directory
-claude               # opens the interactive REPL
-```
-
-Type `/exit` (or Ctrl-C twice) to leave.
-
-If `npm install -g` complains about permissions, use `sudo` or fix npm's prefix
-to a user-owned directory (`npm config set prefix ~/.npm-global`, then add
-`~/.npm-global/bin` to your `PATH`).
-
----
-
-## Step 3 — Install VS Code + the Claude Code extension
-
-1. Download VS Code: <https://code.visualstudio.com/>
-2. Open VS Code → Extensions sidebar (⇧⌘X).
-3. Search **"Claude Code"** (publisher: Anthropic).
-4. Click **Install**.
-
-To use it: open any folder in VS Code, then hit **⌘ + Esc** (Cmd-Escape) — a
-Claude Code panel opens inside the editor. It inherits your terminal login.
-
-The first time, it may ask you to "trust" the workspace — that lets Claude
-read/edit files in the project.
-
----
-
-## Step 4 — Install OpenSCAD
-
-Download from <https://openscad.org/downloads.html> and drag to /Applications.
-
-Verify the binary path — on macOS the installer puts it inside the .app bundle.
-For OpenSCAD 2021.01 the path is:
-
-```
-/Applications/OpenSCAD-2021.01.app/Contents/MacOS/OpenSCAD
-```
-
-For a newer version, adjust accordingly. **Open the [`Makefile`](Makefile) and
-update the `OPENSCAD` line at the top if your path is different.**
-
-> Why the full path: the Homebrew symlink (`/usr/local/bin/openscad`) often gets
-> blocked by macOS Gatekeeper. Going via the app bundle avoids the
-> "openscad cannot be opened" dialog every time.
-
----
-
-## Step 5 — Install Bambu Studio
-
-Download from <https://bambulab.com/en/download/studio> → install → log in →
-add your X1 Carbon → calibrate.
-
-This is the slicer. Claude Code produces `.stl` / `.3mf` mesh files, you load
-them into Bambu Studio to slice and send to the printer.
-
----
-
-## Your first model — verifying the toolchain
-
-A tiny example model lives at [`models/example/example.scad`](models/example/example.scad).
-Build it:
-
-```sh
-make build/example/example.stl
-```
-
-You should get `build/example/example.stl` and `build/example/example.3mf`.
-Open the `.3mf` in Bambu Studio — if it shows a 20×20×10 mm parametric clip,
-the toolchain works end-to-end.
+Each guide ends with a quick build of the example model so you know everything's
+wired up. Come back here once that works.
 
 ---
 
 ## Asking Claude to design something new
 
-Open the repo in VS Code, launch Claude (⌘+Esc), then ask:
+Open the repo in VS Code, launch Claude (⌘+Esc on macOS, Ctrl+Esc on Windows),
+then ask:
 
 > *"Design a wall hook for a coiled garden hose with a 30mm tube diameter, two
 > screw holes for M4 screws, and a curved profile that won't kink the hose."*
@@ -162,6 +59,9 @@ You then open the `.3mf` in Bambu Studio and print it.
 ├── README.md              ← This file
 ├── CLAUDE.md              ← Project conventions (Claude reads this)
 ├── Makefile               ← Builds models/*.scad → build/*.stl + .3mf
+├── docs/
+│   ├── install-macos.md   ← Setup for macOS
+│   └── install-windows.md ← Setup for Windows
 ├── lib/
 │   └── common.scad        ← Shared OpenSCAD utilities (tolerance, rounded_cube, …)
 └── models/
