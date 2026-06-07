@@ -21,15 +21,75 @@ Code extension, OpenSCAD, and Bambu Studio. Skip whichever you already have.
 - 🍎 **[macOS install guide →](docs/install-macos.md)**
 - 🪟 **[Windows install guide →](docs/install-windows.md)**
 
-Each guide ends with a quick build of the example model so you know everything's
-wired up. Come back here once that works.
+Come back here once you've finished the install guide for your platform.
+
+---
+
+## Clone this repo
+
+Open a terminal (Terminal.app on macOS, PowerShell on Windows) and:
+
+```sh
+git clone https://github.com/jirihelmich/3dprint-starter.git
+cd 3dprint-starter
+code .                # opens the folder in VS Code
+```
+
+If `code` isn't recognized on macOS, open VS Code, press **⇧⌘P**, run
+*"Shell Command: Install 'code' command in PATH"*, then try again.
+On Windows, the `code` command is added to PATH by the VS Code installer.
+
+---
+
+## Launch Claude Code inside VS Code
+
+With the project open in VS Code, you have two ways to start Claude:
+
+**Option A — Keyboard shortcut**
+- macOS: **⌘ + Esc** (Cmd-Escape)
+- Windows: **Ctrl + Esc**
+
+A Claude Code panel slides in inside VS Code, already focused on this folder.
+
+**Option B — From the integrated terminal**
+
+Open VS Code's terminal (**⌃` / Ctrl+`**) and type:
+
+```sh
+claude
+```
+
+This launches Claude Code in the terminal. The first time you run it in VS
+Code, it'll offer to auto-install the Claude Code extension — accept it for
+the in-editor panel.
+
+Either way, Claude immediately reads [`CLAUDE.md`](CLAUDE.md) and knows the
+project conventions: where models live, how to build them, what units to use,
+etc.
+
+---
+
+## Verify the toolchain
+
+Inside Claude (or in your own terminal), build the bundled example model:
+
+```sh
+make build/example/example.stl
+```
+
+You should get `build/example/example.stl` and `build/example/example.3mf`.
+Open the `.3mf` in Bambu Studio — if it shows a small parametric cable clip,
+everything is wired up.
+
+> Windows note: if you skipped `make` in the install guide, the equivalent
+> command is `& "C:\Program Files\OpenSCAD\openscad.exe" -o build\example\example.stl models\example\example.scad`
+> in PowerShell.
 
 ---
 
 ## Asking Claude to design something new
 
-Open the repo in VS Code, launch Claude (⌘+Esc on macOS, Ctrl+Esc on Windows),
-then ask:
+In the Claude panel, ask:
 
 > *"Design a wall hook for a coiled garden hose with a 30mm tube diameter, two
 > screw holes for M4 screws, and a curved profile that won't kink the hose."*

@@ -85,17 +85,8 @@ add your Bambu Lab printer → calibrate.
 This is the slicer. Claude Code produces `.stl` / `.3mf` mesh files; you load
 them into Bambu Studio to slice and send to the printer.
 
-## 6 — Verify the toolchain
+## Done — back to the main flow
 
-From the repo root:
-
-```sh
-make build/example/example.stl
-```
-
-You should get `build/example/example.stl` and `build/example/example.3mf`.
-Open the `.3mf` in Bambu Studio — if it shows a small parametric cable clip,
-everything is wired up correctly.
-
-Now head back to the [main README](../README.md#asking-claude-to-design-something-new)
-to start designing.
+That's everything you need installed. Head back to the
+[main README → *Clone this repo*](../README.md#clone-this-repo) section to
+grab the project and verify the toolchain end-to-end.
